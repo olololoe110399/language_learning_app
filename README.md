@@ -2,7 +2,9 @@
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/olololoe110399/language_learning_app)
 
-| ![1](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/1.PNG) | ![1](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/2.PNG) | ![2](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/3.PNG) | ![3](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/4.PNG) | ![4](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/5.PNG) |
+|   |   |   |   |   |
+|---|---|---|---|---|
+|![1](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/1.PNG)|![1](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/2.PNG)|![2](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/3.PNG)|![3](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/4.PNG)|![4](https://raw.githubusercontent.com/olololoe110399/language_learning_app/main/screenshots/5.PNG)|
 
 **Language Learning App** is an AI-powered language learning platform consisting of a FastAPI backend and a React Native (Expo) mobile application. It leverages Google’s Gemini AI to provide personalized learning experiences. The app offers a unified API with four core functionalities: grammar explanations, concise vocabulary lessons (“tiny lessons”), slang conversation practice, and image-based word recognition.
 
