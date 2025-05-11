@@ -1,94 +1,122 @@
 # Language Learning App
+
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/olololoe110399/language_learning_app)
 
-## Overview
+**Language Learning App** is an AI-powered language learning platform consisting of a FastAPI backend and a React Native (Expo) mobile application. It leverages Google’s Gemini AI to provide personalized learning experiences. The app offers a unified API with four core functionalities: grammar explanations, concise vocabulary lessons (“tiny lessons”), slang conversation practice, and image-based word recognition.
 
-The Language Learning App is a FastAPI-based backend that leverages Google’s Gemini AI to deliver personalized language learning experiences . It exposes a unified API through which clients can access four AI-powered features—grammar explanations, vocabulary “tiny lessons,” slang conversation generators, and image-based word recognition .
+## Goals & Purpose
 
-## Purpose & Scope
+This project aims to provide a comprehensive language learning tool by covering multiple facets of language acquisition:
 
-This application aims to cover diverse facets of language acquisition:
+* **Grammar Guidance:** Explain grammatical concepts and rules with examples, helping users understand language structure.
+* **Vocabulary Lessons:** Offer quick “tiny lessons” to learn new words in context, reinforcing vocabulary through usage examples.
+* **Slang & Idioms Practice:** Generate casual conversational scenarios to teach colloquial language, idioms, and slang in a fun, interactive way.
+* **Visual Learning (Word Cam):** Recognize objects from images (using the device camera or gallery) and teach their names in the target language, integrating image recognition into language learning.
 
-* **Grammar API**: Teaches grammatical concepts and rules.
-* **Tiny Lesson API**: Builds compact vocabulary lessons with contextual usage.
-* **Slang Hang API**: Generates colloquial dialogues to teach idioms and slang.
-* **Word Cam API**: Uses image recognition to teach object names in the target language .
+By addressing grammar, vocabulary, slang, and visual context, the app’s goal is to deliver a well-rounded, engaging language learning experience for users.
 
-## System Architecture
+## Technologies Used
 
-The app follows a clean, layered architecture pattern with clear separation of concerns:
+* **Backend:** Python 3 + FastAPI (high-performance web framework) for building RESTful APIs.
 
-1. **API Layer**: Defines FastAPI routers (`grammar.router`, `tiny_lesson.router`, `slang_hang.router`, `word_cam.router`).
-2. **Services Layer**: Encapsulates business logic in dedicated service classes (`GrammarService`, `TinyLessonService`, etc.).
-3. **Data Models**: Uses Pydantic models for request/response validation and internal data structures .
+  * *Libraries:* Pydantic (data models & validation), Uvicorn (ASGI server), `google-genai` (to interact with Google’s Gemini AI models).
+* **AI Integration:** Google **Gemini AI** – powers the language processing features (grammar explanations, lesson generation, slang dialogues, and image recognition for Word Cam).
+* **Frontend:** React Native with **Expo** – a cross-platform mobile app for iOS/Android.
 
-### Architectural Diagram
-
-```
-Client → FastAPI Routers → Services → Google Gemini API → Services → Response
-```
-
-For a detailed overview, see the System Architecture section in the source .
-
-## Core Features
-
-| Feature                                                                                                                                                | Purpose                                             | Router               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- | -------------------- |
-| **Grammar**                                                                                                                                            | Provides grammar lessons with examples/explanations | `grammar.router`     |
-| **Tiny Lesson**                                                                                                                                        | Delivers compact vocabulary lessons in context      | `tiny_lesson.router` |
-| **Slang Hang**                                                                                                                                         | Generates conversational scenarios using slang      | `slang_hang.router`  |
-| **Word Cam**                                                                                                                                           | Recognizes objects in images and teaches vocabulary | `word_cam.router`    |
-| All four features are orchestrated via separate API endpoints and underlying services    . |                                                     |                      |
-
-## Technology Stack
-
-* **FastAPI**: High-performance ASGI framework.
-* **Pydantic**: Data validation and settings management.
-* **Uvicorn**: ASGI server for production deployment.
-* **Google Gemini AI**: Powers all four language features. 
+  * *Libraries/Tools:* Expo Router (for navigation), Expo Camera & Image Picker (for Word Cam), Zustand (state management), NativeWind (styling), and various Expo modules (for fonts, auth UI, etc.).
+* **Architecture:** The backend is organized in a layered architecture: FastAPI routers for each feature, service classes containing business logic, and Pydantic models defining request/response schemas and settings.
 
 ## Installation
 
-1. **Clone the repository**
+### Clone the Repository
 
-   ```bash
-   git clone https://github.com/olololoe110399/language_learning_app.git
-   cd language_learning_app/backend
-   ```
-2. **Install dependencies**
+```bash
+git clone https://github.com/olololoe110399/language_learning_app.git 
+cd language_learning_app
+```
 
-   ````bash
-   pip install -r requirements.txt
-   ````
-3. **Set up Gemini credentials** in your environment (e.g., `GOOGLE_GEMINI_API_KEY`).
+### Backend Setup
 
-## Usage & Request Flow
+* Ensure **Python 3.10+** is installed.
+* Install the dependencies:
 
-1. Start the server:
+  ```bash
+  cd backend
+  pip install -r requirements.txt
+  ```
 
-   ```bash
-   python app/main.py
-   ```
-2. A request (e.g., `/grammar/lesson`) travels from the FastAPI router → Service layer → Gemini API → Service layer → JSON response .
-3. All responses adhere to Pydantic schemas for consistency.
+* Create a `.env` file (or set environment variables) with your Google Gemini API credentials:
 
-## API Reference
+  ```env
+  GEMINI_API_KEY=<your_google_gemini_api_key>
+  ```
 
-All endpoints are mounted on the FastAPI app in `app/main.py`. Key routers include:
+### Frontend Setup
 
-* **Grammar**: `/grammar/...`
-* **Tiny Lesson**: `/tiny_lesson/...`
-* **Slang Hang**: `/slang_hang/...`
-* **Word Cam**: `/word_cam/...` 。
+* Ensure **Node.js** (or **Bun**) is installed. Install Expo CLI:
 
-## Error Handling
+  ```bash
+  npm install --global eas-cli  
+  ```
 
-A global exception handler catches uncaught errors, logs them, and returns a standardized JSON error format to the client (status codes, error messages) .
+* Install dependencies:
+
+  ```bash
+  cd language-learning-app
+  bun install
+  ```
+
+## Usage
+
+### Run the Backend Server
+
+```bash
+python app/main.py
+```
+
+* Access API docs at: `http://localhost:8000/docs`
+
+### Run the Mobile App
+
+```bash
+cd language-learning-app
+bun start
+```
+
+* Use Expo Dev Tools to run the app on a device/emulator.
+
+## Features
+
+The Language Learning App provides four main features:
+
+1. **Grammar Lessons (Grammar API):**
+
+   * Get grammar explanations based on source and target language.
+   * Example API: `/grammar/lesson`
+
+2. **Tiny Vocabulary Lessons (Tiny Lesson API):**
+
+   * Generate quick vocabulary lessons with contextual examples.
+   * Example API: `/tiny_lesson/lesson`
+
+3. **Slang Conversation Practice (Slang Hang API):**
+
+   * Learn slang and idiomatic expressions through simulated conversations.
+   * Example API: `/slang_hang/conversation`
+
+4. **Word Cam (Image-Based Learning API):**
+
+   * Use image recognition to identify objects in images and learn their names in the target language.
+   * Example API: `/word_cam/identify`
 
 ## Contributing
 
-Contributions are welcome! Please fork the repo, open an issue for major changes, and submit pull requests for review. Follow the existing code style and include tests where applicable.
+Contributions are welcome! Please fork the repo and submit a pull request.
+
+* **Code Style:** Follow the existing code conventions (Python for backend, React Native for frontend).
+* **Testing:** Add tests for any new features or bug fixes.
+* **Commits:** Use clear and descriptive commit messages.
 
 ## License
 
-This project is released under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
