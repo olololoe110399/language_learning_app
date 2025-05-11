@@ -59,7 +59,6 @@ For a detailed overview, see the System Architecture section in the source .
 
    ````bash
    pip install -r requirements.txt
-   ``` :contentReference[oaicite:10]{index=10}  
    ````
 3. **Set up Gemini credentials** in your environment (e.g., `GOOGLE_GEMINI_API_KEY`).
 
@@ -68,7 +67,7 @@ For a detailed overview, see the System Architecture section in the source .
 1. Start the server:
 
    ```bash
-   uvicorn app.main:app --reload
+   python app/main.py
    ```
 2. A request (e.g., `/grammar/lesson`) travels from the FastAPI router → Service layer → Gemini API → Service layer → JSON response .
 3. All responses adhere to Pydantic schemas for consistency.
